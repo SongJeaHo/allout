@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AlloutColors {
-  static const int _primaryColorValue = 0xFF151515;
+  static const int _primaryColorValue = 0xFF786CDE;
   static const primaryColor = Color(_primaryColorValue);
 
   static const MaterialColor primaryMaterialColor =
@@ -17,4 +17,9 @@ class AlloutColors {
     800: Color(_primaryColorValue),
     900: Color(_primaryColorValue),
   });
+
+  static const Color background = Color(0xFFF5F5F5);
+  static const Color background_grey = Color(0xFFEDEDED);
+
+  static const Color allout_grey = Color(0xFF999999);
 }
