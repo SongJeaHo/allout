@@ -30,7 +30,7 @@ class AlloutThemes {
     ),
     bodyText2: TextStyle(
       fontSize: 14,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w500,
     ),
     button: TextStyle(
       fontSize: 12,

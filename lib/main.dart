@@ -1,6 +1,7 @@
 import 'package:allout/components/allout_themes.dart';
 import 'package:allout/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +13,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // 투명색
+    ));
+
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Allout',
       theme: AlloutThemes.mainTheme,
       home: const HomePage(),
       builder: (context, child) => MediaQuery(

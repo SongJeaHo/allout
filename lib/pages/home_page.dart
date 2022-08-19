@@ -1,8 +1,5 @@
 import 'package:allout/components/allout_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,44 +13,89 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final _pages = [
-    Container(color: AlloutColors.background),
-    Container(color: AlloutColors.background),
-    Container(color: AlloutColors.background),
-    Container(color: AlloutColors.background),
-    Container(color: AlloutColors.background),
+    Center(
+      child: Text('page 1'),
+    ),
+    Center(
+      child: Text('page 2'),
+    ),
+    Center(
+      child: Text('page 3'),
+    ),
+    Center(
+      child: Text('page 4'),
+    ),
+    Center(
+      child: Text('page 5'),
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AlloutColors.background_grey,
+      color: AlloutColors.backgroundGrey,
       child: SafeArea(
         top: false,
         child: Scaffold(
-          appBar: _AppBar(),
-          body: _pages[_currentIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            elevation: 0,
-            backgroundColor: AlloutColors.background_grey,
-            items: [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.subscriptions), label: '종목'),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
-              BottomNavigationBarItem(icon: Icon(Icons.map), label: '주변'),
-              BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: '칼럼'),
-              BottomNavigationBarItem(icon: Icon(Icons.settings), label: '설정'),
-            ],
-            type: BottomNavigationBarType.fixed,
-          ),
-          // bottomNavigationBar: _BottomAppBar(),
+          appBar: appBar(),
+          body: Container(
+              color: AlloutColors.background, child: _pages[_currentIndex]),
+          bottomNavigationBar: bottomNavigationBar(),
         ),
       ),
     );
   }
 
-  AppBar _AppBar() {
+  BottomNavigationBar bottomNavigationBar() {
+    return BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.subscriptions,
+            ),
+            label: '종목'),
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            label: '홈'),
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.map,
+            ),
+            label: '주변'),
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.newspaper,
+            ),
+            label: '칼럼'),
+        BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings,
+            ),
+            label: '설정'),
+      ],
+      elevation: 0,
+      currentIndex: _currentIndex,
+      selectedItemColor: AlloutColors.primaryColor,
+      unselectedItemColor: AlloutColors.alloutGrey,
+      onTap: _onItemTapped,
+      type: BottomNavigationBarType.fixed,
+      selectedFontSize: 12, //선택된 아이템의 폰트사이즈
+      unselectedFontSize: 12,
+      backgroundColor: AlloutColors.backgroundGrey,
+    );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  AppBar appBar() {
     return AppBar(
-      backgroundColor: AlloutColors.background_grey,
+      backgroundColor: AlloutColors.backgroundGrey,
       leading: new SvgPicture.asset(
         'assets/icons/allout_logo.svg',
         color: AlloutColors.primaryColor,
@@ -73,153 +115,5 @@ class _HomePageState extends State<HomePage> {
             )),
       ],
     );
-  }
-
-  // BottomAppBar _BottomAppBar() {
-  //   return BottomAppBar(
-  //       elevation: 0,
-  //       child: Container(
-  //         height: kBottomNavigationBarHeight,
-  //         color: AlloutColors.background_grey,
-  //         child: Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //           children: [
-  //             CupertinoButton(
-  //                 child: Icon(
-  //                   CupertinoIcons.home,
-  //                   color: _currentIndex == 0
-  //                       ? AlloutColors.primaryColor
-  //                       : AlloutColors.allout_grey,
-  //                 ),
-  //                 onPressed: () {
-  //                   setState(() {
-  //                     _currentIndex = 0;
-  //                   });
-  //                 }),
-  //             CupertinoButton(
-  //                 child: Icon(
-  //                   CupertinoIcons.home,
-  //                   color: _currentIndex == 1
-  //                       ? AlloutColors.primaryColor
-  //                       : AlloutColors.allout_grey,
-  //                 ),
-  //                 onPressed: () {
-  //                   setState(() {
-  //                     _currentIndex = 1;
-  //                   });
-  //                 }),
-  //             CupertinoButton(
-  //                 child: Icon(
-  //                   CupertinoIcons.map,
-  //                   color: _currentIndex == 2
-  //                       ? AlloutColors.primaryColor
-  //                       : AlloutColors.allout_grey,
-  //                 ),
-  //                 onPressed: () {
-  //                   setState(() {
-  //                     _currentIndex = 2;
-  //                   });
-  //                 }),
-  //             CupertinoButton(
-  //                 child: Icon(
-  //                   CupertinoIcons.news,
-  //                   color: _currentIndex == 3
-  //                       ? AlloutColors.primaryColor
-  //                       : AlloutColors.allout_grey,
-  //                 ),
-  //                 onPressed: () {
-  //                   setState(() {
-  //                     _currentIndex = 3;
-  //                   });
-  //                 }),
-  //             CupertinoButton(
-  //                 child: Icon(
-  //                   CupertinoIcons.settings,
-  //                   color: _currentIndex == 4
-  //                       ? AlloutColors.primaryColor
-  //                       : AlloutColors.allout_grey,
-  //                 ),
-  //                 onPressed: () {
-  //                   setState(() {
-  //                     _currentIndex = 4;
-  //                   });
-  //                 }),
-  //           ],
-  //         ),
-  //       ));
-  // }
-
-  BottomAppBar _BottomAppBar() {
-    return BottomAppBar(
-        elevation: 0,
-        child: Container(
-          height: kBottomNavigationBarHeight,
-          color: AlloutColors.background_grey,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CupertinoButton(
-                  child: Icon(
-                    CupertinoIcons.home,
-                    color: _currentIndex == 0
-                        ? AlloutColors.primaryColor
-                        : AlloutColors.allout_grey,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 0;
-                    });
-                  }),
-              CupertinoButton(
-                  child: Icon(
-                    CupertinoIcons.home,
-                    color: _currentIndex == 1
-                        ? AlloutColors.primaryColor
-                        : AlloutColors.allout_grey,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 1;
-                    });
-                  }),
-              CupertinoButton(
-                  child: Icon(
-                    CupertinoIcons.map,
-                    color: _currentIndex == 2
-                        ? AlloutColors.primaryColor
-                        : AlloutColors.allout_grey,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 2;
-                    });
-                  }),
-              CupertinoButton(
-                  child: Icon(
-                    CupertinoIcons.news,
-                    color: _currentIndex == 3
-                        ? AlloutColors.primaryColor
-                        : AlloutColors.allout_grey,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 3;
-                    });
-                  }),
-              CupertinoButton(
-                  child: Icon(
-                    CupertinoIcons.settings,
-                    color: _currentIndex == 4
-                        ? AlloutColors.primaryColor
-                        : AlloutColors.allout_grey,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _currentIndex = 4;
-                    });
-                  }),
-            ],
-          ),
-        ));
   }
 }

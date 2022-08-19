@@ -19,7 +19,7 @@ class AlloutColors {
   });
 
   static const Color background = Color(0xFFF5F5F5);
-  static const Color background_grey = Color(0xFFEDEDED);
+  static const Color backgroundGrey = Color(0xFFEDEDED);
 
-  static const Color allout_grey = Color(0xFF999999);
+  static const Color alloutGrey = Color(0xFF999999);
 }
