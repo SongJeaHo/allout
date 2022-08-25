@@ -1,5 +1,6 @@
 import 'package:allout/components/allout_themes.dart';
-import 'package:allout/pages/home_page.dart';
+import 'package:allout/pages/app_bar.dart';
+import 'package:allout/pages/navigation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Allout',
       theme: AlloutThemes.mainTheme,
-      home: const HomePage(),
+      home: const NavigationPage(),
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: child!,

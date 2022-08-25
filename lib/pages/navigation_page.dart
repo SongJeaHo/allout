@@ -1,16 +1,17 @@
 import 'package:allout/components/allout_colors.dart';
+import 'package:allout/pages/app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class NavigationPage extends StatefulWidget {
+  const NavigationPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<NavigationPage> createState() => _NavigationPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NavigationPageState extends State<NavigationPage> {
   int _currentIndex = 0;
+  int _appBarFlag = 0;
 
   final _pages = [
     Center(
@@ -32,17 +33,21 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AlloutColors.backgroundGrey,
-      child: SafeArea(
-        top: false,
-        child: Scaffold(
-          appBar: appBar(),
-          body: Container(
-              color: AlloutColors.background, child: _pages[_currentIndex]),
-          bottomNavigationBar: bottomNavigationBar(),
-        ),
+    return Scaffold(
+      appBar: AlloutAppBar(
+        appBar: AppBar(),
       ),
+      body: Container(
+          color: AlloutColors.background, child: _pages[_currentIndex]),
+      bottomNavigationBar: Container(
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              blurRadius: 7,
+              color: Colors.grey.withOpacity(0.7),
+              offset: Offset(0, -1),
+            )
+          ]),
+          child: bottomNavigationBar()),
     );
   }
 
@@ -61,9 +66,9 @@ class _HomePageState extends State<HomePage> {
             label: '홈'),
         BottomNavigationBarItem(
             icon: Icon(
-              Icons.map,
+              Icons.person,
             ),
-            label: '주변'),
+            label: '프로필'),
         BottomNavigationBarItem(
             icon: Icon(
               Icons.newspaper,
@@ -75,15 +80,14 @@ class _HomePageState extends State<HomePage> {
             ),
             label: '설정'),
       ],
-      elevation: 0,
       currentIndex: _currentIndex,
+      backgroundColor: AlloutColors.backgroundGrey,
       selectedItemColor: AlloutColors.primaryColor,
       unselectedItemColor: AlloutColors.alloutGrey,
       onTap: _onItemTapped,
       type: BottomNavigationBarType.fixed,
-      selectedFontSize: 12, //선택된 아이템의 폰트사이즈
-      unselectedFontSize: 12,
-      backgroundColor: AlloutColors.backgroundGrey,
+      selectedFontSize: 10, //선택된 아이템의 폰트사이즈
+      unselectedFontSize: 10,
     );
   }
 
@@ -91,29 +95,5 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  AppBar appBar() {
-    return AppBar(
-      backgroundColor: AlloutColors.backgroundGrey,
-      leading: new SvgPicture.asset(
-        'assets/icons/allout_logo.svg',
-        color: AlloutColors.primaryColor,
-      ),
-      actions: <Widget>[
-        new IconButton(
-            onPressed: () {},
-            icon: new Icon(
-              Icons.search,
-              color: Colors.black,
-            )),
-        new IconButton(
-            onPressed: () {},
-            icon: new Icon(
-              Icons.person,
-              color: Colors.black,
-            )),
-      ],
-    );
   }
 }
